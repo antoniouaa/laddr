@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "laddr"
+version = "0.1.0"
+description = "Career tracking for contacts"
+authors = ["antoniouaa <antoniouaa@hotmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.78.0"
+uvicorn = "^0.17.6"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+pytest = "^7.1.2"
+taskipy = "^1.10.2"
+
+[tool.black]
+line-length = 100
+
+[tool.taskipy.tasks]
+run = { cmd = "uvicorn laddr:create_app --factory", help = "Launch the server" }
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

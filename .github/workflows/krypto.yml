@@ -1,0 +1,14 @@
+name: Krypto
+
+on: [push, pull_request]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate issues
+        uses: antoniouaa/krypto@action
+        with:
+          dir: "./laddr"
+        env:
+          TOKEN_GITHUB: ${{secrets.GITHUB_TOKEN}}

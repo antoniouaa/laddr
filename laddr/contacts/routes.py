@@ -22,10 +22,14 @@ def read_contact(
     ),
     db: Session = Depends(get_db),
 ):
-    db_contact = operations.get_contact(db=db, contact_id=contact_id - 1)
+    db_contact = operations.get_contact(db=db, contact_id=contact_id)
     if not db_contact:
         raise HTTPException(404, "Contact does not exist.")
-    return operations.get_contact(db=db, contact_id=contact_id - 1)
+
+    contact = operations.get_contact(db=db, contact_id=contact_id)
+    career = operations.get_career(db=db, contact_id=contact_id)
+    contact.career_progression = [step for step in career]
+    return contact
 
 
 @contacts.post("/create", response_model=schemas.Contact)
